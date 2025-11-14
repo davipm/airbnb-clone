@@ -1,6 +1,6 @@
 import type { FieldErrors, FieldValues } from 'react-hook-form';
 
-import Heading from '@/components/heading';
+import { Heading } from '@/components/heading';
 import Input from '@/components/inputs/input';
 
 type Props = {

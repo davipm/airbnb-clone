@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from 'next/navigation';
 
-import CategoryBox from "@/components/category-box";
-import Container from "@/components/container";
-import { categories } from "@/constants";
+import CategoryBox from '@/components/category-box';
+import { Container } from '@/components/container';
+import { categories } from '@/constants';
 
 export default function Categories() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const category = searchParams.get("category");
-  const isMainPage = pathname === "/";
+  const category = searchParams.get('category');
+  const isMainPage = pathname === '/';
 
   if (!isMainPage) return null;
 

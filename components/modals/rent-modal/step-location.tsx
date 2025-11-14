@@ -1,4 +1,4 @@
-import Heading from '@/components/heading';
+import { Heading } from '@/components/heading';
 import CountrySelect from '@/components/inputs/country-select';
 import { Map } from '@/components/map';
 import type { CountrySelectValue } from '@/lib/types';

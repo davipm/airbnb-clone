@@ -1,11 +1,11 @@
 // import prisma from "@/utils/connect";
-import { prisma } from "@/server/prisma";
+import { prisma } from '@/server/prisma';
 
 type IParams = {
   listingId?: string;
 };
 
-export default async function getListingById(params: IParams) {
+export async function getListingById(params: IParams) {
   try {
     const { listingId } = params;
     const listing = await prisma.listing.findUnique({
@@ -30,6 +30,6 @@ export default async function getListingById(params: IParams) {
       },
     };
   } catch (error) {
-    throw new Error("Error get listing by ID");
+    throw new Error('Error get listing by ID');
   }
 }

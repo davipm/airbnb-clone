@@ -1,9 +1,9 @@
 import Image from 'next/image';
 
-import Heading from '@/components/heading';
+import { Heading } from '@/components/heading';
 import HeartButton from '@/components/heart-button';
 import useCountries from '@/hooks/useCountries';
-import type { ListingHeadProps as Props } from '@/types';
+import type { ListingHeadProps as Props } from '@/lib/types';
 
 export default function ListingHead({ id, currentUser, ...rest }: Props) {
   const { getByValue } = useCountries();

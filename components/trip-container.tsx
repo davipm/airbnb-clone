@@ -9,7 +9,7 @@ interface Props {
   currentUser?: SessionInterface | null;
 }
 
-export default function TripContainer({ reservations, currentUser }: Props) {
+export function TripContainer({ reservations, currentUser }: Props) {
   const { mutate, deletingId } = useReservation();
 
   return (

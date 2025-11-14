@@ -1,4 +1,4 @@
-import Heading from '@/components/heading';
+import { Heading } from '@/components/heading';
 import Counter from '@/components/inputs/counter';
 
 type Props = {

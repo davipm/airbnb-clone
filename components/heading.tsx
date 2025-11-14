@@ -1,6 +1,6 @@
 import type { HeadingProps } from '@/lib/types';
 
-export default function Heading({ center, subtitle, title }: HeadingProps) {
+export function Heading({ center, subtitle, title }: HeadingProps) {
   return (
     <header className={center ? 'text-center' : 'text-start'}>
       <h1 className="text-2xl font-bold">{title}</h1>

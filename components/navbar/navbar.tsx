@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import Container from "@/components/container";
-import Categories from "@/components/navbar/categories";
-import Logo from "@/components/navbar/logo";
-import Search from "@/components/navbar/search";
-import UserMenu from "@/components/navbar/user-menu";
+import { Container } from '@/components/container';
+import Categories from '@/components/navbar/categories';
+import Logo from '@/components/navbar/logo';
+import Search from '@/components/navbar/search';
+import UserMenu from '@/components/navbar/user-menu';
 
 export default function Navbar() {
   return (

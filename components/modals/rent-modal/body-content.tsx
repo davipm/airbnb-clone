@@ -1,4 +1,4 @@
-import Heading from '@/components/heading';
+import { Heading } from '@/components/heading';
 import CategoryInput from '@/components/inputs/category-input';
 import { categories } from '@/constants';
 

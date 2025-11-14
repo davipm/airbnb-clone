@@ -7,11 +7,8 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { Range } from 'react-date-range';
-
-// import { toast } from 'react-hot-toast';
-
 import { toast } from 'sonner';
-import Container from '@/components/container';
+import { Container } from '@/components/container';
 import ListingHead from '@/components/listings/listing-head';
 import ListingInfo from '@/components/listings/listing-info';
 import ListingReservation from '@/components/listings/listing-reservation';

@@ -1,4 +1,4 @@
-import { prisma } from "@/server/prisma";
+import { prisma } from '@/server/prisma';
 
 interface IParams {
   listingId?: string;
@@ -6,7 +6,7 @@ interface IParams {
   authorId?: string;
 }
 
-export default async function getReservations(params: IParams) {
+export async function getReservations(params: IParams) {
   try {
     const { userId, authorId, listingId } = params;
     let query = {};
@@ -24,7 +24,7 @@ export default async function getReservations(params: IParams) {
         listing: true,
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: 'desc',
       },
     });
 
@@ -39,6 +39,6 @@ export default async function getReservations(params: IParams) {
       },
     }));
   } catch (error) {
-    throw new Error("error get reservation");
+    throw new Error('error get reservation');
   }
 }

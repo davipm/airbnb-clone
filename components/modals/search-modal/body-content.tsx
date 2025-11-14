@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 
-import Heading from '@/components/heading';
+import { Heading } from '@/components/heading';
 import CountrySelect from '@/components/inputs/country-select';
 import type { CountrySelectValue } from '@/types';
 

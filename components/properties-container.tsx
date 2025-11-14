@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 
-import ListingCard from "@/components/listings/listing-card";
-import { SafeListing, SessionInterface } from "@/types";
+import ListingCard from '@/components/listings/listing-card';
+import type { SafeListing, SessionInterface } from '@/lib/types';
 
 interface Props {
   listings: SafeListing[];
@@ -16,7 +16,7 @@ interface Props {
 
 export default function PropertiesContainer({ listings, currentUser }: Props) {
   const router = useRouter();
-  const [deletingId, setDeletingId] = useState("");
+  const [deletingId, setDeletingId] = useState('');
 
   const { mutate } = useMutation({
     mutationFn: (listingId: string) => {
@@ -24,11 +24,11 @@ export default function PropertiesContainer({ listings, currentUser }: Props) {
       return axios.delete(`/api/listings/${listingId}`);
     },
     onSuccess: () => {
-      toast.success("Listing deleted");
+      toast.success('Listing deleted');
       router.refresh();
     },
     onError: () => {
-      toast.error("Error");
+      toast.error('Error');
     },
   });
 

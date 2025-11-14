@@ -2,7 +2,7 @@ import Image from 'next/image';
 import type { ChangeEvent } from 'react';
 import { TbPhotoPlus } from 'react-icons/tb';
 
-import Heading from '@/components/heading';
+import { Heading } from '@/components/heading';
 
 type Props = {
   imageSrc: string;

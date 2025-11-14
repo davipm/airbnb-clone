@@ -2,9 +2,10 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 import { type MouseEvent, useCallback, useMemo } from 'react';
 import { toast } from 'sonner';
+import { useSession } from '@/lib/auth-client';
 import type { SessionInterface } from '@/lib/types';
 import { useModalStore } from '@/store';
 
@@ -16,7 +17,8 @@ interface IUseFavorite {
 export default function useFavorite({ listingId, currentUser }: IUseFavorite) {
   const router = useRouter();
   const { openLogin } = useModalStore();
-  const { status } = useSession();
+  const { data: session } = useSession();
+  console.log(session.session.)
 
   const hasFavorite = useMemo(() => {
     const list = currentUser?.user.favoriteIds || [];

@@ -1,4 +1,4 @@
-import Heading from '@/components/heading';
+import { Heading } from '@/components/heading';
 import Input from '@/components/inputs/input';
 import type { LoginBodyContentProps as Props } from '@/lib/types';
 

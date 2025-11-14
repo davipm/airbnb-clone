@@ -1,6 +1,6 @@
 import type { Range } from 'react-date-range';
 
-import Heading from '@/components/heading';
+import { Heading } from '@/components/heading';
 import Calendar from '@/components/inputs/calendar';
 
 interface Props {

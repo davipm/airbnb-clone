@@ -1,6 +1,6 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import Heading from "@/components/heading";
+import { Heading } from '@/components/heading';
 
 interface EmptyStateProps {
   title?: string;
@@ -8,9 +8,9 @@ interface EmptyStateProps {
   showReset?: boolean;
 }
 
-export default function EmptyState({
-  title = "No exact matches",
-  subtitle = "Try changing or removing some of your filters.",
+export function EmptyState({
+  title = 'No exact matches',
+  subtitle = 'Try changing or removing some of your filters.',
   showReset,
 }: EmptyStateProps) {
   return (

@@ -1,4 +1,4 @@
-import { prisma } from "@/server/prisma";
+import { prisma } from '@/server/prisma';
 
 export interface IListingsParams {
   userId?: string;
@@ -11,7 +11,7 @@ export interface IListingsParams {
   category?: string;
 }
 
-export default async function getListings(params: IListingsParams) {
+export async function getListings(params: IListingsParams) {
   try {
     const {
       userId,
@@ -73,7 +73,7 @@ export default async function getListings(params: IListingsParams) {
     const listings = await prisma.listing.findMany({
       where: query,
       orderBy: {
-        createdAt: "desc",
+        createdAt: 'desc',
       },
     });
 
