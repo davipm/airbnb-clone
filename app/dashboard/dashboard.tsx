@@ -14,6 +14,7 @@ export function Dashboard({ session }: Props) {
   return (
     <div>
       <p>API: {privateData.data?.message}</p>
+      <p>API User Name: {privateData.data?.user.email}</p>
       <p>Active Session User: {session?.user.name}</p>
     </div>
   );
