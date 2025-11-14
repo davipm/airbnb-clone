@@ -22,7 +22,7 @@ const initialDateRange = {
   key: 'selection',
 };
 
-export default function ListingContainer({ listing, reservations, currentUser }: Props) {
+export function ListingContainer({ listing, reservations, currentUser }: Props) {
   const router = useRouter();
   const { openLogin } = useModalStore();
   const { status } = useSession();

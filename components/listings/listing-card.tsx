@@ -9,7 +9,7 @@ import Button from '@/components/button';
 import HeartButton from '@/components/heart-button';
 import useCountries from '@/hooks/useCountries';
 import type { ListingCardProps as Props } from '@/lib/types';
-import { formatToMoney } from '@/utils/helpers';
+import { formatToMoney } from '@/lib/utils';
 
 export default function ListingCard({
   actionId = '',

@@ -1,7 +1,7 @@
-import getListingById from '@/actions/getListingById';
-import getReservations from '@/actions/getReservations';
 import { EmptyState } from '@/components/empty-state';
-import ListingContainer from '@/components/listing-container';
+import { ListingContainer } from '@/components/listing-container';
+import { getListingById } from '@/server/querys/get-listing-by-id';
+import { getReservations } from '@/server/querys/get-reservations';
 import { getCurrentUser } from '@/utils/auth';
 
 type Props = {
