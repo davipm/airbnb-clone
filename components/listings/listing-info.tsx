@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Avatar from '@/components/avatar';
 import ListingCategory from '@/components/listings/listing-category';
 import useCountries from '@/hooks/useCountries';
-import type { ListingInfoProps as Props } from '@/types';
+import type { ListingInfoProps as Props } from '@/lib/types';
 
 const Map = dynamic(() => import('../map'), {
   loading: () => <p>loading...</p>,

@@ -7,11 +7,11 @@ import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 import ListingCard from '@/components/listings/listing-card';
-import type { SafeListing, SessionInterface } from '@/lib/types';
+import type { SafeListing } from '@/lib/types';
 
 interface Props {
   listings: SafeListing[];
-  currentUser?: SessionInterface | null;
+  currentUser?: any;
 }
 
 export default function PropertiesContainer({ listings, currentUser }: Props) {

@@ -1,15 +1,19 @@
+import { headers } from 'next/headers';
 import { Container } from '@/components/container';
 import { EmptyState } from '@/components/empty-state';
 import { Heading } from '@/components/heading';
 import ReservationContainer from '@/components/reservation-container';
+import { auth } from '@/server/auth';
 import { getReservations } from '@/server/querys/get-reservations';
-import { getCurrentUser } from '@/utils/auth';
 
 export default async function ReservationPage() {
-  const currentUser = await getCurrentUser();
-  const reservations = await getReservations({ authorId: currentUser.user.id });
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-  if (!currentUser) return <EmptyState title="Unauthorized" subtitle="Please login" />;
+  const reservations = await getReservations({ authorId: session?.user.id });
+
+  if (!session?.user) return <EmptyState title="Unauthorized" subtitle="Please login" />;
 
   if (!reservations.length)
     return (
@@ -23,7 +27,7 @@ export default async function ReservationPage() {
     <Container>
       <Heading title="Reservations" subtitle="Bookings on your properties" />
 
-      <ReservationContainer reservations={reservations} currentUser={currentUser} />
+      <ReservationContainer reservations={reservations} currentUser={session?.user} />
     </Container>
   );
 }

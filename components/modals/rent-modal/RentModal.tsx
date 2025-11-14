@@ -4,9 +4,10 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useCallback, useMemo, useState } from 'react';
-import { type FieldValues, useForm } from 'react-hook-form';
+import { type FieldValues, type SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
+import type z from 'zod';
 import Modal from '@/components/modals/modal';
 import BodyContent from '@/components/modals/rent-modal/body-content';
 import StepDescription from '@/components/modals/rent-modal/step-description';
@@ -14,7 +15,9 @@ import StepImages from '@/components/modals/rent-modal/step-images';
 import StepInfo from '@/components/modals/rent-modal/step-info';
 import StepLocation from '@/components/modals/rent-modal/step-location';
 import StepPrice from '@/components/modals/rent-modal/step-price';
+import type { listingSchema } from '@/server/orpc/routers/listing';
 import { useModalStore } from '@/store';
+import { orpc } from '@/utils/orpc';
 
 enum STEPS {
   CATEGORY = 0,
@@ -24,15 +27,6 @@ enum STEPS {
   DESCRIPTION = 4,
   PRICE = 5,
 }
-
-const uploadImage = async (imagePath: string) => {
-  try {
-    const { data } = await axios.post(`/api/upload`, { path: imagePath });
-    return data;
-  } catch (error) {
-    throw error;
-  }
-};
 
 export default function RentModal() {
   const router = useRouter();
@@ -82,42 +76,25 @@ export default function RentModal() {
   const onNext = () => setStep((prevState) => prevState + 1);
   const onBack = () => setStep((prevState) => prevState - 1);
 
-  const { mutate, isPending: loading } = useMutation({
-    mutationFn: async (newProduct: FieldValues) => {
-      try {
-        const imageUrl = await uploadImage(imageSrc);
-
-        if (imageUrl.url) {
-          const { data } = await axios.post('/api/listings', {
-            ...newProduct,
-            imageSrc: imageUrl.url,
-          });
-
-          return data;
-        }
-      } catch (error) {
-        throw new Error('Error');
-      }
-    },
-    onSuccess: () => {
-      toast.success('Listing created!');
-      router.refresh();
-      reset();
-      setStep(STEPS.CATEGORY);
-      closeRent();
-    },
-    onError: () => {
-      toast.error('Error creating Product');
-    },
-  });
-
-  const handleNewItem = useCallback(
-    (data: FieldValues) => {
-      if (step !== STEPS.PRICE) return onNext();
-      mutate(data);
-    },
-    [mutate, step],
+  const { mutate, isPending: loading } = useMutation(
+    orpc.listings.create.mutationOptions({
+      onSuccess: () => {
+        toast.success('Listing created!');
+        router.refresh();
+        reset();
+        setStep(STEPS.CATEGORY);
+        closeRent();
+      },
+      onError: () => {
+        toast.error('Error creating Product');
+      },
+    }),
   );
+
+  const onSubmit: SubmitHandler<z.infer<typeof listingSchema>> = (data) => {
+    if (step !== STEPS.PRICE) return onNext();
+    mutate(data);
+  };
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.PRICE) return 'Create';
@@ -171,7 +148,7 @@ export default function RentModal() {
       isOpen={isRentOpen}
       title="Airbnb your home!"
       actionLabel={actionLabel}
-      onSubmit={handleSubmit(handleNewItem)}
+      onSubmit={handleSubmit(onSubmit)}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       onClose={closeRent}

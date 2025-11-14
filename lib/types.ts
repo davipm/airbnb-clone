@@ -149,7 +149,7 @@ export interface ListingCardProps {
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
-  currentUser?: SessionInterface | null;
+  currentUser?: any;
 }
 
 export type CountrySelectValue = {
@@ -187,7 +187,7 @@ export type Favorite = {
 };
 
 export interface ListingClientProps {
-  currentUser?: SessionInterface | null;
+  currentUser?: any;
   reservations?: SafeReservation[];
   listing:
     | (SafeListing & {

@@ -3,7 +3,7 @@ import z from 'zod';
 import { protectedProcedure } from '@/server/orpc';
 import { prisma } from '@/server/prisma';
 
-const postSchema = z.object({
+export const listingSchema = z.object({
   title: z.string().min(3),
   description: z.string().min(3),
   category: z.string(),
@@ -20,7 +20,7 @@ const postSchema = z.object({
 export const listingRouter = {
   create: protectedProcedure
     .route({ method: 'POST', path: '/listings' })
-    .input(postSchema)
+    .input(listingSchema)
     .handler(({ input, context }) => {
       const { location, price, ...rest } = input;
       return prisma.listing.create({

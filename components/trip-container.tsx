@@ -2,11 +2,11 @@
 
 import ListingCard from '@/components/listings/listing-card';
 import { useReservation } from '@/hooks/useReservation';
-import type { SafeReservation, SessionInterface } from '@/lib/types';
+import type { SafeReservation } from '@/lib/types';
 
 interface Props {
   reservations: SafeReservation[];
-  currentUser?: SessionInterface | null;
+  currentUser?: any;
 }
 
 export function TripContainer({ reservations, currentUser }: Props) {

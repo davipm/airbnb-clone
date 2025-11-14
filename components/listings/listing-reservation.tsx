@@ -1,7 +1,7 @@
 import Button from '@/components/button';
 import Calendar from '@/components/inputs/calendar';
-import type { ListingReservationProps as Props } from '@/types';
-import { formatToMoney } from '@/utils/helpers';
+import type { ListingReservationProps as Props } from '@/lib/types';
+import { formatToMoney } from '@/lib/utils';
 
 export default function ListingReservation({
   dateRange,

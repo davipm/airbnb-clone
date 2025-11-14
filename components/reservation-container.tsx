@@ -6,7 +6,7 @@ import type { SafeReservation, SessionInterface } from '@/lib/types';
 
 interface Props {
   reservations: SafeReservation[];
-  currentUser?: SessionInterface | null;
+  currentUser?: any;
 }
 
 export default function ReservationContainer({ reservations, currentUser }: Props) {
