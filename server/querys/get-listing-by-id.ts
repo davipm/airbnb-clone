@@ -2,12 +2,11 @@
 import { prisma } from '@/server/prisma';
 
 type IParams = {
-  listingId?: string;
+  listingId: string;
 };
 
-export async function getListingById(params: IParams) {
+export async function getListingById({ listingId }: IParams) {
   try {
-    const { listingId } = params;
     const listing = await prisma.listing.findUnique({
       where: {
         id: listingId,

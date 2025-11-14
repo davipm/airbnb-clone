@@ -4,7 +4,6 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
 import { type MouseEvent, useCallback, useMemo } from 'react';
-
 import Button from '@/components/button';
 import HeartButton from '@/components/heart-button';
 import useCountries from '@/hooks/useCountries';

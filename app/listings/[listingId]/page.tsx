@@ -5,13 +5,12 @@ import { getReservations } from '@/server/querys/get-reservations';
 import { getCurrentUser } from '@/utils/auth';
 
 type Props = {
-  params: {
-    listingId?: string;
-  };
+  params: Promise<{ listingId: string }>;
 };
-export default async function ListingsPage({ params }: Props) {
-  const listing = await getListingById(params);
-  const reservations = await getReservations(params);
+export default async function Page({ params }: Props) {
+  const { listingId } = await params;
+  const listing = await getListingById({ listingId });
+  const reservations = await getReservations({ listingId });
   const currentUser = await getCurrentUser();
 
   if (!listing) return <EmptyState />;
